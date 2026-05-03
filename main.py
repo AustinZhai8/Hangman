@@ -14,11 +14,57 @@ def chooseDificulty():
         else:
             print ('Invalid response please try again')
 
+def hangman (lives):
+    if lives == 6:
+        print ("-----------------")
+        print ("        |       ")
+        print ("                ")
+        print ("                ")
+        print ("                ")
+
+    elif lives == 5:
+        print ("-----------------")
+        print ("        |       ")
+        print ("        O       ")
+        print ("                ")
+        print ("                ")
+
+    elif lives == 4:
+        print ("-----------------")
+        print ("        |       ")
+        print ("        O       ")
+        print ("        |       ")
+        print ("                ")
+
+    elif lives == 3:
+        print ("-----------------")
+        print ("        |       ")
+        print ("        O       ")
+        print ("       /|       ")
+        print ("                ")
+
+    elif lives == 2:
+        print ("-----------------")
+        print ("        |       ")
+        print ("        O       ")
+        print ("       /|\\     ")
+        print ("                ")
+
+    elif lives == 1:
+        print ("-----------------")
+        print ("        |       ")
+        print ("        O       ")
+        print ("       /|\\     ")
+        print ("       /        ")
+        
+
 
 lives = 6
 guessedLetters = []
 guessedWords = []
+incorrectLetters = []
 correct = False
+
 
 print('\n--------Welcome to Hangman!--------\n')
 word = chooseDificulty()
@@ -29,7 +75,8 @@ print(f'\nYou have {lives} lives left')
 print(lettersinWord)
 
 while not correct and lives > 0:
-
+    print('\n')
+    hangman(lives)
     guess = input('Enter your guess: ').lower()
 
     if len(guess) == 1 and guess.isalpha():
@@ -49,6 +96,9 @@ while not correct and lives > 0:
             print(f'{guess} is not in the word')
             lives -= 1
             guessedLetters.append(guess)
+            incorrectLetters.append(guess)
+        
+        print(f'Incorrect letters: {incorrectLetters}')
 
     elif len(guess) == len(word) and guess.isalpha():
         if guess in guessedWords:
@@ -70,4 +120,9 @@ if correct and lives > 0:
     print(f'Congratulations you guessed the word {word}!')
 
 else:
+    print ("-----------------")
+    print ("        |       ")
+    print ("        O       ")
+    print ("       /|\\     ")
+    print ("       / \\     ")
     print(f'Sorry you ran out of lives the word was {word}')
